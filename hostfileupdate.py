@@ -33,7 +33,7 @@ def validIP(ipaddress):
     parts = ipaddress.split(".")
     if len(parts) != 4:
         return False
-    if ipaddress[-1] == '0': return False
+    if ipaddress[-2:] == '.0': return False
     if ipaddress[-1] == '.': return False
     for item in parts:
         if not 0 <= int(item) <= 255:
