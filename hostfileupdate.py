@@ -7,7 +7,7 @@ def exists(ipaddress):
     if 'linux' in sys.platform:
         filename = '/etc/hosts'
     else:
-        filename = 'c:\windows\system32\drives\etc\hosts'
+        filename = 'c:\windows\system32\drivers\etc\hosts'
     f = open(filename, 'r')
     hostfiledata = f.readlines()
     f.close()
@@ -22,7 +22,7 @@ def update(ipaddress, hostname):
     if 'linux' in sys.platform:
         filename = '/etc/hosts'
     else:
-        filename = 'c:\windows\system32\drives\etc\hosts'
+        filename = 'c:\windows\system32\drivers\etc\hosts'
     outputfile = open(filename, 'a')
     entry = "\n" + ipaddress + "\t" + hostname
     outputfile.writelines(entry)
