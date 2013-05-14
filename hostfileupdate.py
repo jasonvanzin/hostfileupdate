@@ -3,7 +3,7 @@ import sys
 import re
 
 
-def exists(ipaddress):
+def exists(hostname):
     if 'linux' in sys.platform:
         filename = '/etc/hosts'
     else:
@@ -12,8 +12,7 @@ def exists(ipaddress):
     hostfiledata = f.readlines()
     f.close()
     for item in hostfiledata:
-        if ipaddress in item:
-            #print(ipaddress, 'already exists')
+        if hostname in item:
             return True
     return False
 
@@ -24,7 +23,7 @@ def update(ipaddress, hostname):
     else:
         filename = 'c:\windows\system32\drivers\etc\hosts'
     outputfile = open(filename, 'a')
-    entry = "\n" + ipaddress + "\t" + hostname
+    entry = "\n" + ipaddress + "\t" + hostname + "\n"
     outputfile.writelines(entry)
     outputfile.close()
 
@@ -68,8 +67,8 @@ def main():
         print(hostname, "is not a valid hostname. Usage: hostfileupdate.py [ipadddress] [hostmame]")
         sys.exit(2)
 
-    if exists(ipaddress):
-        print(ipaddress, 'already exists in the hostfile.')
+    if exists(hostname):
+        print(hostname, 'already exists in the hostfile.')
         sys.exit(2)
 
     update(ipaddress, hostname)
